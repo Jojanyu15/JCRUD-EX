@@ -1,0 +1,6 @@
+<app-navbar></app-navbar>
+<div *ngIf="!USER_VERIFIED" class="alert alert-warning text-center" role="alert">
+    Su correo no ha sido verificado para crear su negocio tendrá que verificarlo primero. Si no recibió el correo
+    <a class="text-link" (click)="sendEmail()">haga click aquí para reenviarlo.</a>
+</div>
+<router-outlet></router-outlet>

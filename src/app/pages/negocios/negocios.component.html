@@ -1,0 +1,50 @@
+<div class=" my-4 animated fadeInRight container">
+    <div *ngIf="negocios.length===0; else negociosC">
+        <div class="row">
+            <div class="caja-vacia text-center  col">
+                <fa-icon class="fa-4x text-primary mb-4 icono-grande caja-vacia" [icon]="faBriefcase"></fa-icon>
+                <p>No has añadido ningún negocio ¡Empieza añadiendo tu primer negocio!</p>
+            </div>
+        </div>
+        <i class="fas fa-snowboarding fa-flip-both"></i>
+        <div class="mediaicon rotate" style="width: 80%;">
+            <fa-icon class="fa-4x text-primary mb-4 icono-grande caja-vacia  rotate" [icon]="faReply "></fa-icon>
+        </div>
+    </div>
+    <ng-template #negociosC>
+        <div>
+            <div class="py-4">
+                <input [(ngModel)]="negocioB" (ngModelChange)="buscarNegocio()" type="text" class="form-control" id="formGroupExampleInput" placeholder="Busca tu negocio acá">
+            </div>
+            <div *ngIf="!busqueda; else buscandoT" class="card-columns">
+                <div *ngFor="let negocio of negocios" class="card">
+                    <img class="card-img-top" [src]="negocio.photoPath |imagepipe " alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">{{negocio.nombre}}</h5>
+                        <p class="card-text">{{negocio.descripcion}}</p>
+                    </div>
+                    <div class="card-footer">
+                        <button [routerLink]="['/crud/negocio/'+negocio.id]" routerLinkActive="router-link-active" class="btn btn-outline-primary btn-block">Ver negocio</button>
+                    </div>
+                </div>
+            </div>
+            <ng-template #buscandoT>
+                <div class="card-columns">
+                    <div *ngFor="let negocio of buscando" class="card">
+                        <img class="card-img-top" [src]="negocio.photoPath |imagepipe " alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">{{negocio.nombre}}</h5>
+                            <p class="card-text">{{negocio.descripcion}}</p>
+                        </div>
+                        <div class="card-footer">
+                            <button [routerLink]="['/crud/negocio/'+negocio.id]" routerLinkActive="router-link-active" class="btn btn-outline-primary btn-block">Ver negocio</button>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </div>
+
+    </ng-template>
+
+    <a href="#" [routerLink]="['/crud/negocio',{create:true}]" class="btn-flotante">Añadir negocio</a>
+</div>

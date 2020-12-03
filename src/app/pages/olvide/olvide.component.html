@@ -1,0 +1,30 @@
+<div class="limiter animated fadeInUp">
+    <div class="container-login100">
+        <div class="wrap-login100 p-t-50 p-b-90">
+            <form (ngSubmit)="sendEmail(lform)" #lform="ngForm" class="login100-form validate-form flex-sb flex-w">
+
+                <span class="login100-form-title p-b-51">
+                    Olvidé mi contraseña
+                </span>
+
+                <span class="text-success">Ingresa el correo electrónico de tu cuenta para enviarte un e-mail de recuperación.</span>
+                <span *ngIf="lform.submitted && lform.controls['email'].errors" class="text-danger">El correo es obligatorio</span>
+
+                <div class="wrap-input100 m-b-16 my-3">
+                    <input [(ngModel)]="usuario.email" required class="input100" type="text" name="email" placeholder="E-mail">
+                    <span class="focus-input100"></span>
+                </div>
+                <div class="container-login100-form-btn m-t-17">
+                    <button class="login100-form-btn" type="submit">
+                        Enviar correo
+                    </button>
+                </div>
+                <div class="flex-sb-m w-full p-t-3 p-b-24 text-right">
+                    <a routerLink="/login" style="align-items: flex-end; text-align: center !important; width: 100%;" class="txt1 text-right">
+                        Regresar a la pantalla de ingreso
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

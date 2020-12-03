@@ -1,0 +1,73 @@
+<div class="container animated fadeInDown" style="padding-bottom: 200px; padding-top:20px">
+    <div class="row">
+        <div class="col-md-3 img-container">
+            <img width="100%" [src]="imgURL | imagepipe" class="img-fluid rounded img-query" />
+            <hr>
+            <input style="display: none;" #file type="file" accept='.jpg,.jpeg,.png' (change)="preview(file.files)" class="custom-file-input" id="imageUpload" content="Elegir" lang="en" />
+            <button onclick="document.getElementById('imageUpload').click()" class="btn btn-outline-primary btn-block">Añadir Fotografía</button>
+        </div>
+
+
+        <div class="col-md padding-query">
+            <form #ngForm="ngForm" [formGroup]="negocioForm" *ngIf="formReady">
+                <div>
+                    <span *ngIf="ngForm.submitted && negocioForm.controls['nombre'].errors" class="text-danger">El campo es obligatorio</span>
+                </div>
+                <div class="form-group row">
+                    <label for="nombre" class="col-sm-2 col-form-label input100">Nombre</label>
+                    <div class="col-sm-10">
+                        <input formControlName="nombre" type="text" [value]="negocio?.nombre" class="form-control input100 " id="nombre" placeholder="Nombre">
+                    </div>
+                </div>
+                <div>
+                    <span *ngIf="ngForm.submitted && negocioForm.controls['descripcion'].errors" class="text-danger">El campo es obligatorio</span>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label input100" for="descripcion">Descripción</label>
+                    <div class="col-sm-10">
+                        <textarea formControlName="descripcion" placeholder="Descripción" [value]="negocio?.descripcion" class="input100 form-control" id="descripcion" rows="3"></textarea>
+                    </div>
+                </div>
+                <div>
+                    <span *ngIf="ngForm.submitted && negocioForm.controls['direccion'].errors" class="text-danger">El campo es obligatorio</span>
+                </div>
+                <div class="form-group row">
+                    <label for="direccion" class="col-sm-2 col-form-label input100">Dirección</label>
+                    <div class="col-sm-10">
+                        <input formControlName="direccion" type="text" [value]="negocio?.direccion" class="input100 form-control" id="direccion" placeholder="Dirección">
+                    </div>
+                </div>
+                <div>
+                    <span *ngIf="ngForm.submitted && negocioForm.controls['encargado'].errors" class="text-danger">El campo es obligatorio</span>
+                </div>
+                <div class="form-group row ">
+                    <label class="col-sm-2 col-form-label input100" for="encargado">Encargado</label>
+                    <div class="col-sm-10">
+                        <input formControlName="encargado" placeholder="Encargado" [value]="negocio?.encargado" class="form-control input100" id="encargado" rows="3">
+                    </div>
+                </div>
+                <div *ngIf="create;else edit " class="form-group row">
+                    <div class="col">
+                        <button (click)="crearNegocio()" type="submit" class="btn btn-outline-success btn-block">Crear negocio</button>
+                    </div>
+                    <div class="col">
+                        <button [routerLink]="['/crud/negocios']" class="btn btn-outline-primary btn-block">Volver</button>
+                    </div>
+                </div>
+                <ng-template #edit>
+                    <div class="form-group row">
+                        <div class="col">
+                            <button (click)="actualizarNegocio()" class="btn btn-outline-success btn-block">Actualizar Datos</button>
+                        </div>
+                        <div class="col">
+                            <button (click)="eliminarNegocio()" class="btn btn-outline-danger btn-block">Eliminar </button>
+                        </div>
+                    </div>
+                    <div>
+                        <button [routerLink]="['/crud/negocios']" class="btn btn-outline-primary btn-block">Volver</button>
+                    </div>
+                </ng-template>
+            </form>
+        </div>
+    </div>
+</div>
